@@ -1,0 +1,28 @@
+# Ask-Ops dependencies. Ranges, not pins: run `pip freeze > requirements.lock` once everything works.
+# Python 3.11+
+
+# --- Core RAG (vendor SDKs, used directly) ---
+anthropic>=0.40          # Claude API: answer generation, verifier, query rewrite
+pinecone>=5.0            # Vector database (dense retrieval + metadata filters)
+cohere>=5.0              # Rerank API
+voyageai>=0.3            # Embeddings (Anthropic's recommended partner). Swap for cohere embed if you prefer.
+rank-bm25>=0.2.2         # Sparse keyword retrieval (BM25)
+
+# --- LangChain: ONLY for loaders and splitters ---
+langchain-text-splitters>=0.3   # RecursiveCharacterTextSplitter, MarkdownHeaderTextSplitter
+langchain-community>=0.3        # Document loaders
+pypdf>=4.0                      # PDF parsing used by the PDF loader
+
+# --- Serving ---
+fastapi>=0.115
+uvicorn[standard]>=0.30
+pydantic>=2.7
+
+# --- Config and utilities ---
+python-dotenv>=1.0       # Load secrets from .env
+numpy>=1.26              # Metrics math (recall, MRR)
+tenacity>=8.2            # Retry with backoff for API calls
+
+# --- Dev ---
+pytest>=8.0
+ruff>=0.6
